@@ -9,10 +9,13 @@ pygame.init()
 
 continuer = True
 
+nb_case = 15
+sprit_size = 30
+screen_size = (nb_case*sprit_size, nb_case*sprit_size)
 
 
 
-fenetre = pygame.display.set_mode((450, 450))
+fenetre = pygame.display.set_mode(screen_size)
 titre_fenetre = "Jeu Pygame/DK"
 
 
