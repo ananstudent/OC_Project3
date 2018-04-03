@@ -31,7 +31,7 @@ fenetre.blit(perso,(position_perso_x,position_perso_y))
 pygame.display.flip()
 
 #Boucle infinie
-pygame.key.set_repeat(400, 30)
+pygame.key.set_repeat(400, 30) #quand on appui en continue le personnage avance
 continuer = 1
 while continuer:
 	for event in pygame.event.get():
