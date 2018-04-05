@@ -41,6 +41,76 @@ class Niveau():
 				
 			num_ligne += 1		
 
+class Monkey():
+
+	def __init__(self, niveau):
+		#Images de mouvement de DK:
+		self.droite = dk_droite
+		self.gauche = dk_gauche
+		self.bas = dk_bas
+		self.haut = dk_haut
+
+		#Position en pixel:
+		self.x = 0
+		self.y = 0
+
+		#Position en case:
+		self.sprite_x = 0
+		self.sprite_y = 0
+
+		#Direction par défaut
+		self.direction = dk_bas
+
+		#Niveau
+		self.niveau = niveau
+
+	def deplacement(self, direction):
+		"""Methode permettant de deplacer le personnage"""
+
+		#deplacement à droite
+		if direction == "droite":
+			if self.sprite_x < nb_case -1: #empecher de sortir de l'écran
+				if self.niveau.grille[self.sprite_x+1][self.sprite_y] != "m": #si la case 
+					#deplacement d'une case
+					self.sprite_x += 1
+					#Position réelle après deplacement
+					self.x = self.sprite_x * sprit_size
+
+			self.direction = self.droite #On affiche le singe dans la position
+		
+		#deplacement gauche
+		if direction == "gauche":
+			if self.sprite_x > 0: #empecher de sortir de l'écran
+				if self.niveau.grille[self.sprite_x-1][self.sprite_y] != "m":
+					self.sprite_x -= 1
+					self.x = self.sprite_x * sprit_size
+			self.direction = self.gauche
+			
+		#deplacement bas
+		if direction == "en bas":
+			if self.sprite_y < nb_case-1: #empecher de sortir de l'écran
+				if self.niveau.grille[self.sprite_x][self.sprite_y+1] != "m":
+					self.sprite_y += 1
+					self.y = self.sprite_y * sprit_size
+			self.direction = self.bas
+
+		#deplacement haut
+		if direction == "en haut":
+			if self.sprite_y > 0: #empecher de sortir de l'écran
+				if self.niveau.grille[self.sprite_x][self.sprite_y-1] != "m":
+					self.sprite_y -= 1
+					self.y = self.sprite_y * sprit_size
+
+			self.direction = self.haut
+
+
+
+					
+
+
+
+			
+							
 
 
 

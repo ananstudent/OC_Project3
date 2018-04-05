@@ -49,6 +49,7 @@ while continuer_principal:
 			if event.type == QUIT:
 				continuer_principal = False
 				continuer_accueil = False
+				continuer_jeu = False
 				
 		
 			if event.type == KEYDOWN and event.key == K_ESCAPE:
@@ -74,14 +75,18 @@ while continuer_principal:
 		niveau = Niveau(fichier)
 		niveau.generation()
 		niveau.afficher(fenetre)
-		pygame.display.flip()
+		dk = Monkey(niveau)
+
+		fenetre.blit(dk.direction, (dk.x,dk.y))
+	pygame.display.flip()
+	#Boucle jeu	
 
 	continuer_jeu = True
 	while continuer_jeu:
 
 
+		
 		print("je suis là")
-		pygame.display.flip()
 
 		pygame.time.Clock().tick(30)
 		for event in pygame.event.get():
@@ -89,12 +94,40 @@ while continuer_principal:
 			if event.type == QUIT:
 				continuer_principal = False
 				continuer_jeu = False
+
+			if event.type == KEYDOWN:
+				if event.key == K_ESCAPE:
+					continuer_jeu = False
+				#deplacement du singe	
+				if event.key == K_RIGHT:
+					print("droite")
+					dk.deplacement("droite")
+					
+				if event.key == K_LEFT:
+					print("gauche")
+					dk.deplacement("gauche")
+					
+				if event.key == K_DOWN:
+					print("bas")
+					dk.deplacement("en bas")
+					
+				if event.key == K_UP:
+					print("haut")
+					dk.deplacement("en haut")
+							
+
+
+
+
 		
-			if event.type == KEYDOWN and event.key == K_ESCAPE:
-				continuer_jeu = False
-				continuer_principal = True
-				continuer_accueil = True
-	
+		fenetre.blit(fond,(0,0))
+		niveau.afficher(fenetre)
+		fenetre.blit(dk.direction,(dk.x,dk.y))
+		pygame.display.flip()
+		print("je suis ici")
+		print(dk.sprite_x,dk.sprite_y)
+		print(dk.x,dk.y)
 
-
-
+		if niveau.grille[dk.sprite_x][dk.sprite_y] == "a":
+			print("Gagné!")
+			continuer_jeu = False

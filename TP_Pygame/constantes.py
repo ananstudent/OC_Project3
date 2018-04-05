@@ -31,10 +31,10 @@ fond = pygame.image.load("fond.jpg").convert()
 
 #Images DK
 
-dk_gauche = pygame.image.load("dk_gauche.png").convert()
-dk_droite = pygame.image.load("dk_droite.png").convert()
-dk_bas = pygame.image.load("dk_bas.png").convert()
-dk_haut = pygame.image.load("dk_haut.png").convert()
+dk_gauche = pygame.image.load("dk_gauche.png").convert_alpha()
+dk_droite = pygame.image.load("dk_droite.png").convert_alpha()
+dk_bas = pygame.image.load("dk_bas.png").convert_alpha()
+dk_haut = pygame.image.load("dk_haut.png").convert_alpha()
 
 #Sprites
 
