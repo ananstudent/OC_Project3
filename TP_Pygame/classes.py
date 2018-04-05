@@ -20,7 +20,7 @@ class Niveau():
 			for line in fichier:
 				line = line.strip()#je coupe le saut de ligne
 				structure.append(list(line))
-		#del structure[15] #je supprime le dernier indice : liste vide je ne sais pas pourquoi...
+
 		self.grille = structure	#je mets la structure dans un attribut grille
 
 	def afficher(self,fenetre):
@@ -40,8 +40,6 @@ class Niveau():
 				num_case += 1
 				
 			num_ligne += 1		
-
-
 
 
 

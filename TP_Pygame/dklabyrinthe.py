@@ -37,7 +37,7 @@ while continuer_principal:
 	#Raffraichissement
 	pygame.display.flip()
 	
-	continuer_jeu = True
+	
 	continuer_accueil = True
 
 	while continuer_accueil:
@@ -49,17 +49,18 @@ while continuer_principal:
 			if event.type == QUIT:
 				continuer_principal = False
 				continuer_accueil = False
-				continuer_jeu = False
+				
 		
 			if event.type == KEYDOWN and event.key == K_ESCAPE:
 				continuer_principal = False
 				continuer_accueil = False
-				continuer_jeu = False
+				
 			
 			if event.type == KEYDOWN:
 				
 				if event.key == K_F1:
 					continuer_accueil = False
+					
 					fichier = "N1.txt"
 					print("N1")
 				if event.key == K_F2:
@@ -68,14 +69,32 @@ while continuer_principal:
 					print("N2")
 
 	if fichier != "": #On s'arrure que le fichier est bien présent pour charger la carte
-		#chargement du fond
+	#chargement du fond
 		fenetre.blit(fond,(0,0))
-
-
 		niveau = Niveau(fichier)
 		niveau.generation()
 		niveau.afficher(fenetre)
+		pygame.display.flip()
 
-while continuer_jeu:
-	print("je suis là")
-	pygame.display.flip()
+	continuer_jeu = True
+	while continuer_jeu:
+
+
+		print("je suis là")
+		pygame.display.flip()
+
+		pygame.time.Clock().tick(30)
+		for event in pygame.event.get():
+
+			if event.type == QUIT:
+				continuer_principal = False
+				continuer_jeu = False
+		
+			if event.type == KEYDOWN and event.key == K_ESCAPE:
+				continuer_jeu = False
+				continuer_principal = True
+				continuer_accueil = True
+	
+
+
+
