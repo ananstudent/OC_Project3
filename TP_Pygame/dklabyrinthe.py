@@ -28,19 +28,21 @@ pygame.init()
 pygame.display.set_icon(icone)
 pygame.display.set_caption(titre_fenetre)
 
+continuer_principal = True
+
 while continuer_principal:
 	#chargement ecran d'accueil
 	fenetre.blit(accueil,(0,0))
 
 	#Raffraichissement
 	pygame.display.flip()
-
+	
+	continuer_jeu = True
+	continuer_accueil = True
 
 	while continuer_accueil:
-	#limitation de vitesse de la boucle :
+
 		pygame.time.Clock().tick(30)
-
-
 		for event in pygame.event.get():
 		#Boucle Menu
 		#Quitter
@@ -48,24 +50,24 @@ while continuer_principal:
 				continuer_principal = False
 				continuer_accueil = False
 				continuer_jeu = False
+		
 			if event.type == KEYDOWN and event.key == K_ESCAPE:
 				continuer_principal = False
 				continuer_accueil = False
 				continuer_jeu = False
-				
-
-		#Retour Menu 	
-		
-	
+			
 			if event.type == KEYDOWN:
+				
 				if event.key == K_F1:
 					continuer_accueil = False
 					fichier = "N1.txt"
+					print("N1")
 				if event.key == K_F2:
 					continuer_accueil = False
 					fichier = "N2.txt"
-		
-	if fichier != 0: #On s'arrure que le fichier est bien présent pour charger la carte
+					print("N2")
+
+	if fichier != "": #On s'arrure que le fichier est bien présent pour charger la carte
 		#chargement du fond
 		fenetre.blit(fond,(0,0))
 
@@ -74,13 +76,6 @@ while continuer_principal:
 		niveau.generation()
 		niveau.afficher(fenetre)
 
-		
-
-		
-
-		#Si le choix est N1 , je génére le Niveau 1 et je l'affiche
-
-
-
-
-
+while continuer_jeu:
+	print("je suis là")
+	pygame.display.flip()

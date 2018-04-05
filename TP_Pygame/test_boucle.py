@@ -3,7 +3,7 @@
 
 grille = []
 
-with open("niveau1.txt","r") as fichier:
+with open("N1.txt","r") as fichier:
 	for line in fichier:
 		line = line.strip()
 		grille.append(list(line))
@@ -22,6 +22,10 @@ for line in grille:
 		num_case += 1
 
 	num_ligne +=1
+
+
+
+
 
 
 
