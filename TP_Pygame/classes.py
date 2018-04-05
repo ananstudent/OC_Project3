@@ -70,7 +70,7 @@ class Monkey():
 		#deplacement à droite
 		if direction == "droite":
 			if self.sprite_x < nb_case -1: #empecher de sortir de l'écran
-				if self.niveau.grille[self.sprite_x+1][self.sprite_y] != "m": #si la case 
+				if self.niveau.grille[self.sprite_y][self.sprite_x+1] != "m": #si la case 
 					#deplacement d'une case
 					self.sprite_x += 1
 					#Position réelle après deplacement
@@ -81,7 +81,7 @@ class Monkey():
 		#deplacement gauche
 		if direction == "gauche":
 			if self.sprite_x > 0: #empecher de sortir de l'écran
-				if self.niveau.grille[self.sprite_x-1][self.sprite_y] != "m":
+				if self.niveau.grille[self.sprite_y][self.sprite_x-1] != "m":
 					self.sprite_x -= 1
 					self.x = self.sprite_x * sprit_size
 			self.direction = self.gauche
@@ -89,7 +89,7 @@ class Monkey():
 		#deplacement bas
 		if direction == "en bas":
 			if self.sprite_y < nb_case-1: #empecher de sortir de l'écran
-				if self.niveau.grille[self.sprite_x][self.sprite_y+1] != "m":
+				if self.niveau.grille[self.sprite_y+1][self.sprite_x] != "m":
 					self.sprite_y += 1
 					self.y = self.sprite_y * sprit_size
 			self.direction = self.bas
@@ -97,7 +97,7 @@ class Monkey():
 		#deplacement haut
 		if direction == "en haut":
 			if self.sprite_y > 0: #empecher de sortir de l'écran
-				if self.niveau.grille[self.sprite_x][self.sprite_y-1] != "m":
+				if self.niveau.grille[self.sprite_y-1][self.sprite_x] != "m":
 					self.sprite_y -= 1
 					self.y = self.sprite_y * sprit_size
 

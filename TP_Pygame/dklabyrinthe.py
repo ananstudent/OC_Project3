@@ -47,6 +47,7 @@ while continuer_principal:
 		#Boucle Menu
 		#Quitter
 			if event.type == QUIT:
+				print("Ciao")
 				continuer_principal = False
 				continuer_accueil = False
 				continuer_jeu = False
@@ -81,7 +82,7 @@ while continuer_principal:
 	pygame.display.flip()
 	#Boucle jeu	
 
-	continuer_jeu = True
+	#continuer_jeu = True
 	while continuer_jeu:
 
 
@@ -94,6 +95,7 @@ while continuer_principal:
 			if event.type == QUIT:
 				continuer_principal = False
 				continuer_jeu = False
+
 
 			if event.type == KEYDOWN:
 				if event.key == K_ESCAPE:
