@@ -42,5 +42,7 @@ mur = pygame.image.load("mur.png")
 arrivee = pygame.image.load("arrivee.png").convert_alpha()
 depart = pygame.image.load("depart.png").convert()
 
+#son
 
+son = pygame.mixer.Sound("10620.wav")
 

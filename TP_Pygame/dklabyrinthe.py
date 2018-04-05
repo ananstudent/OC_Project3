@@ -28,6 +28,10 @@ pygame.init()
 pygame.display.set_icon(icone)
 pygame.display.set_caption(titre_fenetre)
 
+#chargement son
+son.play(loops=-1, maxtime=0, fade_ms=0)
+
+
 continuer_principal = True
 
 while continuer_principal:
@@ -37,7 +41,8 @@ while continuer_principal:
 	#Raffraichissement
 	pygame.display.flip()
 	
-	
+
+
 	continuer_accueil = True
 
 	while continuer_accueil:
@@ -56,33 +61,37 @@ while continuer_principal:
 			if event.type == KEYDOWN and event.key == K_ESCAPE:
 				continuer_principal = False
 				continuer_accueil = False
+				continuer_jeu = False
 				
 			
 			if event.type == KEYDOWN:
 				
 				if event.key == K_F1:
 					continuer_accueil = False
-					
 					fichier = "N1.txt"
 					print("N1")
+				
 				if event.key == K_F2:
 					continuer_accueil = False
 					fichier = "N2.txt"
 					print("N2")
 
-	if fichier != "": #On s'arrure que le fichier est bien présent pour charger la carte
+	if fichier != "": #On s'assure que le fichier est bien présent pour charger la carte
 	#chargement du fond
 		fenetre.blit(fond,(0,0))
+		
+		#génération d'un niveau à partir d'un fichier
 		niveau = Niveau(fichier)
 		niveau.generation()
 		niveau.afficher(fenetre)
+		
+		#Creation d'un personnage
 		dk = Monkey(niveau)
 
-		fenetre.blit(dk.direction, (dk.x,dk.y))
-	pygame.display.flip()
+
 	#Boucle jeu	
 
-	#continuer_jeu = True
+	continuer_jeu = True
 	while continuer_jeu:
 
 
