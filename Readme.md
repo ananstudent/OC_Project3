@@ -32,7 +32,22 @@ Génération de la structure du labyrinthe : je crée un document .txt avec 15 l
 "w" = wall
 "" = case vide
 "a" = arrivée
-ce fichier sera la carte permattant de générer le labyrinthe . Le traitement sera celui d'une liste de liste .
+Ce document sera la matrice du labyrinthe.
+Je créé une class Map qui a comme attribut une grille vide au début et qui prend en parmètre le fichier .txt.
+Cette classe a deux methodes
+
+Une qui génére le labyrinthe à partir de la matrice :
+A chaque symbole ("w" "a") correspond une image.
+La liste de liste comporte des cases auquel je donne une taille de 30 * 30 pixel.
+
+L'autre qui affiche le "calque" du labyrinthe. 
+
+Dans le programme principal:
+Je charge dans la fenêtre le fond.
+Je créé un objet "labyrinth" de type Map et je lance les deux fonctions (generate et display ).
+Je raffiche le fond + calque du labyrinthe.
+
+
 
 
 

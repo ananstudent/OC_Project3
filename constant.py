@@ -18,7 +18,7 @@ SPRITE_SIZE = 30
 SCREEN_SIZE = (NB_SPRITE * SPRITE_SIZE, NB_SPRITE * SPRITE_SIZE)
 
 #Display video of window game
-WINDOW = pygame.display.set_mode(SCREEN_SIZE)
+window = pygame.display.set_mode(SCREEN_SIZE)
 TITLE_WINDOW = "Help to Escape!"
 ICONE = pygame.image.load("pictures/guardian.png").convert_alpha()
 

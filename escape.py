@@ -4,6 +4,7 @@
 """Program "Help MacGyver to escape!"""
 
 from constant import*
+from classes import*
 
 #Open game window
 pygame.display.set_icon(ICONE)
@@ -14,7 +15,7 @@ pygame.display.set_caption(TITLE_WINDOW)
 MAIN_LOOP = True
 while MAIN_LOOP:
     #Load home screen
-    WINDOW.blit(HOME, (0, 0))
+    window.blit(HOME, (0, 0))
     #Reload display
     pygame.display.flip()
     #loop delay
@@ -36,19 +37,21 @@ while MAIN_LOOP:
             if event.type == KEYDOWN and event.key == K_RETURN:
                 print("Welcome to the game")
                 HOME_LOOP = False
-                GAME_LOOP = True
+                #GAME_LOOP = True
                 #Load the game's map
-                file = "N1.txt"
+                file = "map/N1.txt"
 
-    if file != "" : #We get sure that the file really exist and not empty
-    #load the background
-        WINDOW.blit(BACKGROUND, (0, 0))
+    if file != "" : #We make sure that the file really exists and not empty
+        #load the background
+        window.blit(BACKGROUND, (0, 0))
+        #generate the labyrinth
+        labyrinth = Map(file)
+        labyrinth.generate()
+        labyrinth.display(window)
+        pygame.display.flip()
 
 
-
-
-
-
+#########GAME_LOOP##############
     while  GAME_LOOP:
         print("Je suis là")
         pygame.time.Clock().tick(30)
