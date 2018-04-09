@@ -84,6 +84,7 @@ while continuer_principal:
 		niveau = Niveau(fichier)
 		niveau.generation()
 		niveau.afficher(fenetre)
+
 		
 		#Creation d'un personnage
 		dk = Monkey(niveau)
@@ -139,6 +140,6 @@ while continuer_principal:
 		print(dk.sprite_x,dk.sprite_y)
 		print(dk.x,dk.y)
 
-		if niveau.grille[dk.sprite_x][dk.sprite_y] == "a":
+		if niveau.grille[dk.sprite_y][dk.sprite_x] == "a":
 			print("Gagné!")
 			continuer_jeu = False

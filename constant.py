@@ -30,7 +30,10 @@ BACKGROUND = pygame.image.load("pictures/background.jpg").convert()
 
 #kind of sprite
 WALL = pygame.image.load("pictures/wall.png")
-ARRIVAL = pygame.image.load("pictures/guardian.png")
+ARRIVAL = pygame.image.load("pictures/guardian.png").convert_alpha()
+
+#Display MacGyver
+MG = pygame.image.load("pictures/MacGyver.png").convert_alpha()
 
 #variable contain map
 file = ""
