@@ -46,3 +46,4 @@ depart = pygame.image.load("depart.png").convert()
 
 son = pygame.mixer.Sound("10620.wav")
 
+
