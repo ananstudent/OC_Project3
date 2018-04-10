@@ -59,7 +59,8 @@ Cette classe comprend une methode: Move qui définie les nouvelles positions sui
 
 ###Fait 4 ème commit###
 
-
+10 avril 2018 : 2ème jour
+Objectifs: Coder le placement aléatoire des objets et leur affichage.
 
 
 

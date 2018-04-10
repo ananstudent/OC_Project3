@@ -32,6 +32,14 @@ BACKGROUND = pygame.image.load("pictures/background.jpg").convert()
 WALL = pygame.image.load("pictures/wall.png")
 ARRIVAL = pygame.image.load("pictures/guardian.png").convert_alpha()
 
+#king of thing
+TUBE = pygame.image.load("pictures/tube.png").convert_alpha()
+ETHER = pygame.image.load("pictures/ether.png").convert_alpha()
+SYRINGE = pygame.image.load("pictures/syringe.png").convert_alpha()
+
+#list of thing
+thing = [TUBE, ETHER, SYRINGE]
+
 #Display MacGyver
 MG = pygame.image.load("pictures/MacGyver.png").convert_alpha()
 

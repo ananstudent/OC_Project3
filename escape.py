@@ -5,6 +5,7 @@
 
 from constant import*
 from classes import*
+from function import*
 
 #Open game window
 pygame.display.set_icon(ICONE)
@@ -51,9 +52,16 @@ while MAIN_LOOP:
         labyrinth.generate()
         labyrinth.display(window)
 
+        #Get the items in the labyrinthe
+        syringue = Elements("s",labyrinth)
+        syringue.locate_elements()
+        syringue.pin_elements()
+        print(syringue.sprite_x,syringue.sprite_y)
+        print(labyrinth.grid)
+
         #And God create an Heroe
         MacGyver = Heroe(labyrinth)
-
+        
 
 #########GAME_LOOP##############
     while  GAME_LOOP:
@@ -87,6 +95,11 @@ while MAIN_LOOP:
         labyrinth.display(window)
         #Add MacGyver in the Labyrinth with his position
         window.blit(MG, (MacGyver.x, MacGyver.y))
+        #Add Element in the Labyrinth
+        window.blit(SYRINGE, (syringue.x, syringue.y))
+
+
+
         pygame.display.flip()
 
         if labyrinth.grid[MacGyver.sprite_x][MacGyver.sprite_y] == "a":
