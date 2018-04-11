@@ -100,9 +100,9 @@ L'affichage de l'objet est conditionnel à la présence de sa lettre témoin sur
 
 Je crée une liste tools vide . Elle symbolise le ramassage. Chaque élément ramassé vient s'ajouter à la liste.
 
-Cette liste doit faire une longueur de 3 . Si ce n'est pas le cas et si MacGyver se positionne sur "a" c'est à dire l'arrivée sans ses trois objets , il perd sinon il gagne.
+Cette liste doit faire une longueur de 3 . Si ce n'est pas le cas et si MacGyver se positionne sur "a" c'est à dire l'arrivée sans ses trois objets , il perd. Sinon il gagne.
 
-Les fonctionnalités du jeu sont remplies cependant je me demande toujours si je ne pourrais pas coder une fonction ou une methode evitant d'ecrire les mêmes ligne pour chacun des trois objets.
+Les fonctionnalités du jeu sont remplies cependant je me demande toujours si je ne pourrais pas coder une fonction ou une methode evitant d'écrire les mêmes lignes pour chacun des trois objets.
 
 
 ####Fait 6 ème commit####
