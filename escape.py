@@ -5,7 +5,7 @@
 
 from constant import*
 from classes import*
-from function import*
+#from function import*
 
 #Open game window
 pygame.display.set_icon(ICONE)
@@ -25,7 +25,9 @@ while MAIN_LOOP:
     HOME_LOOP = True
     while HOME_LOOP:
 
+        #loop delay
         pygame.time.Clock().tick(30)
+
         for event in pygame.event.get():
             #Quit the program
             if event.type == QUIT:
@@ -40,24 +42,31 @@ while MAIN_LOOP:
                 HOME_LOOP = False
                 GAME_LOOP = True
                 #Load the game's map
-                file = "map/N1.txt"
+                FILE = "map/N1.txt"
 
-    if file != "": #We make sure that the file really exists and is not empty
+    if FILE != "": #We make sure that the file really exists and is not empty
         
         #load the background
         window.blit(BACKGROUND, (0, 0))
         
         #generate the labyrinth
-        labyrinth = Map(file)
+        labyrinth = Map(FILE)
         labyrinth.generate()
         labyrinth.display(window)
 
         #Get the items in the labyrinthe
-        syringue = Elements("s",labyrinth)
-        syringue.locate_elements()
-        syringue.pin_elements()
-        print(syringue.sprite_x,syringue.sprite_y)
-        print(labyrinth.grid)
+
+        syringe = Elements("s", SYRINGE, labyrinth)
+        syringe.locate_elements()
+        syringe.pin_elements()
+
+        ether = Elements("e", ETHER, labyrinth)
+        ether.locate_elements()
+        ether.pin_elements()
+
+        tube = Elements("t", TUBE, labyrinth)
+        tube.locate_elements()
+        tube.pin_elements()
 
         #And God create an Heroe
         MacGyver = Heroe(labyrinth)
@@ -65,7 +74,7 @@ while MAIN_LOOP:
 
 #########GAME_LOOP##############
     while  GAME_LOOP:
-        print("Je suis là")
+        #print("Je suis là")
         pygame.time.Clock().tick(30)
         for event in pygame.event.get():
             
@@ -91,17 +100,53 @@ while MAIN_LOOP:
                 if event.key == K_UP:
                     MacGyver.move("up")                
         
+        #Display the game board
         window.blit(BACKGROUND, (0, 0))
         labyrinth.display(window)
+        
         #Add MacGyver in the Labyrinth with his position
         window.blit(MG, (MacGyver.x, MacGyver.y))
-        #Add Element in the Labyrinth
-        window.blit(SYRINGE, (syringue.x, syringue.y))
+
+        #Add conditionnal display of Element
+        if labyrinth.grid[tube.sprite_y][tube.sprite_x] == "t":
+            tube.display_elements(window)
+
+        if labyrinth.grid[syringe.sprite_y][syringe.sprite_x] == "s":
+            syringe.display_elements(window)
+
+        if labyrinth.grid[ether.sprite_y][ether.sprite_x] == "e":
+            ether.display_elements(window)     
+        
+        if labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] == "t":
+            print("Yeah! You caught the tube!")
+            labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] = "0"
+            TOOLS.append("tube")
+            print(TOOLS)
+
+        if labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] == "s":
+            print("Yeah! You caught the syringe!")
+            labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] = "0"
+            TOOLS.append("syringe")
+            print(TOOLS)
 
 
+        if labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] == "e":
+            print("Yeah! You caught the ether!")
+            labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] = "0"
+            TOOLS.append("ether")
+            print(TOOLS)
 
-        pygame.display.flip()
+    
+        pygame.display.flip()    
+
 
         if labyrinth.grid[MacGyver.sprite_x][MacGyver.sprite_y] == "a":
-            print("You win!")
-            GAME_LOOP = False
+
+            if len(TOOLS) < 3:
+                print("You don't collect all the items !")
+                print("You die!")
+                GAME_LOOP = False
+
+            if len(TOOLS) == 3:        
+                print("You win!")
+                GAME_LOOP = False

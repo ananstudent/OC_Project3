@@ -12,7 +12,7 @@ MAIN_LOOP = True
 HOME_LOOP = True
 GAME_LOOP = True
 
-#Dimensions of game windows
+#Dimensions of game window
 NB_SPRITE = 15
 SPRITE_SIZE = 30
 SCREEN_SIZE = (NB_SPRITE * SPRITE_SIZE, NB_SPRITE * SPRITE_SIZE)
@@ -32,16 +32,16 @@ BACKGROUND = pygame.image.load("pictures/background.jpg").convert()
 WALL = pygame.image.load("pictures/wall.png")
 ARRIVAL = pygame.image.load("pictures/guardian.png").convert_alpha()
 
-#king of thing
+#king of tools
 TUBE = pygame.image.load("pictures/tube.png").convert_alpha()
 ETHER = pygame.image.load("pictures/ether.png").convert_alpha()
 SYRINGE = pygame.image.load("pictures/syringe.png").convert_alpha()
 
-#list of thing
-thing = [TUBE, ETHER, SYRINGE]
+#list of tools
+TOOLS = []
 
 #Display MacGyver
 MG = pygame.image.load("pictures/MacGyver.png").convert_alpha()
 
 #variable contain map
-file = ""
+FILE = ""

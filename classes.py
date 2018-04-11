@@ -43,9 +43,11 @@ class Map():
             num_line += 1
 
 class Elements():
-    """Class which define the various elements. It take in parameter the labyrinth and the name of the element.
-    Two methods: one to locate with random choice the position and one to write the grid in order to get the element later"""
-    def __init__(self, name, labyrinth):
+    """Class which define the various elements.
+    Takes in parameter: the element's name, the surface and the labyrinth.
+    2 methods: locate with random choice the position,
+    write the grid in order to get the element later"""
+    def __init__(self, name, SURFACE, labyrinth):
         #Position in pixel:
         self.x = 0
         self.y = 0
@@ -56,10 +58,12 @@ class Elements():
         self.name = name
         #Labyrinth
         self.labyrinth = labyrinth
+        #Surface
+        self.surface = SURFACE
 
 
     def locate_elements(self):
-        """To locate one element: we detecte empty cell. We catch the coodrinate in a list of tuple
+        """To locate one element: we detecte empty cell. We catch the coordinate in a list of tuple
         (y,x), we choice one pair of co-ordinates"""
         position = []
         coordinates = ()
@@ -70,8 +74,8 @@ class Elements():
                 if self.labyrinth.grid[num_line][num_cell] == "0":
                     coordinates = (num_line, num_cell)
                     position.append(coordinates)
-                num_cell +=1
-            num_line +=1       
+                num_cell += 1
+            num_line += 1       
 
         element_coordinates = random.choice(position)
         self.sprite_y = element_coordinates[0]
@@ -83,6 +87,11 @@ class Elements():
     def pin_elements(self):
         """Pin the name of the element to help MacGyver to find it"""
         self.labyrinth.grid[self.sprite_y][self.sprite_x] = self.name
+
+    def display_elements(self, window):
+        """Display element over the game board"""
+        window.blit(self.surface, (self.x, self.y))
+
 
 
 class Heroe():
