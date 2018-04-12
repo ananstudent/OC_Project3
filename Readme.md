@@ -110,8 +110,18 @@ Les fonctionnalités du jeu sont remplies cependant je me demande toujours si je
 12 avril 2018 : 4 ème jour
 
 Ajout de la methode display_element à la classe Element de manière à gérer l'affichage des objets si MG est sur la case ou non? Cette methode fait l'ajout aussi dans la liste TOOLS.
-Ceci est l'idée que j'avais en tête pour gérer de la même manière tous les objets . Cpendant je me dis si le code est plus libilble ainsi ...
+Ceci est l'idée que j'avais en tête pour gérer de la même manière tous les objets . Cpendant je me dis si le code est plus lisible ainsi ...
 
 Je passe à l'aspect décoratif:
-ajout de son et d'images supplémentaire (passer le texte en console à l'affichage)
+ajout de son et d'images supplémentaire (passer le texte en console à l'affichage d'un jeu). Faire appel au module time.
+####Fait 7 ème commit####
+
+bug detecté: la liste TOOLS ne se vide pas lors de la sortie d'une partie puis d'une entrée ....
+
+Ca m'a donné du fil à retorde:
+La liste TOOLS etait initialisée dans le fichier constant en tant que liste vide.
+Elle se vidait donc à chaque tour de boucle MAIN . Si je la supprimais du fichier constante pour la mettre dans la méthode display, elle gardait en mémoire les éléments malgré la sortie d'un partie.
+Solution: définir la liste TOOLS vide à chaque début de boucle GAME (donc la sortir du fichier constant) et la passer en paramètre dans la création de chaque élément. Un peu comme si on faisait l'appel de chaque élément.
+
+
 

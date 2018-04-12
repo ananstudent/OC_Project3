@@ -4,7 +4,7 @@
 """Program "Help MacGyver to escape!"""
 from constant import*
 from classes import*
-#from function import*
+
 
 #Open game window
 pygame.display.set_icon(ICONE)
@@ -14,9 +14,9 @@ pygame.display.set_caption(TITLE_WINDOW)
 ######MAIN_LOOP############
 MAIN_LOOP = True
 while MAIN_LOOP:
+
     #Load home screen
     window.blit(HOME, (0, 0))
-
     #Reload display
     pygame.display.flip()
     
@@ -26,7 +26,8 @@ while MAIN_LOOP:
     while HOME_LOOP:
 
         #play soundtrack
-        soundtrack.play()
+        SOUNDTRACK.play()
+
         #loop delay
         pygame.time.Clock().tick(30)
 
@@ -42,7 +43,7 @@ while MAIN_LOOP:
             if event.type == KEYDOWN and event.key == K_RETURN:
                 
                 #######WELCOME TO THE GAME##########
-                soundtrack.stop()
+                SOUNDTRACK.stop()
                 window.blit(BACKGROUND, (0, 0))
                 window.blit(WELCOME, (90, 120))
                 pygame.display.flip()
@@ -54,8 +55,6 @@ while MAIN_LOOP:
   
                 #Load the game's map
                 FILE = "map/N1.txt"
-
-
 
     if FILE != "": #We make sure that the file really exists and is not empty
         
@@ -85,6 +84,8 @@ while MAIN_LOOP:
         MacGyver = Heroe(labyrinth)
         
 #########GAME_LOOP##############
+    #Initialyse at every game_loop an empty list to put the elements inside
+    TOOLS = []
     while  GAME_LOOP:
 
         pygame.time.Clock().tick(30)
@@ -121,10 +122,9 @@ while MAIN_LOOP:
 
         #Add conditionnal display of Element
 
-        tube.display_elements(window, MacGyver)
-        syringe.display_elements(window, MacGyver)
-        ether.display_elements(window, MacGyver)
-        print(TOOLS)
+        tube.display_elements(window, MacGyver, TOOLS)
+        syringe.display_elements(window, MacGyver, TOOLS)
+        ether.display_elements(window, MacGyver, TOOLS)
         pygame.display.flip()    
 
 
@@ -138,10 +138,10 @@ while MAIN_LOOP:
                 pygame.display.flip()
                 time.sleep(2)
                 ###########################
+                print("You loose")
                 GAME_LOOP = False
 
             if len(TOOLS) == 3:
-
                 ######DISPLAY YOU WIN#####        
                 window.blit(WIN, (100, 150))
                 pygame.display.flip()

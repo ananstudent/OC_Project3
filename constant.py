@@ -49,9 +49,6 @@ TUBE = pygame.image.load("pictures/tube.png").convert_alpha()
 ETHER = pygame.image.load("pictures/ether.png").convert_alpha()
 SYRINGE = pygame.image.load("pictures/syringe.png").convert_alpha()
 
-#list of tools
-TOOLS = []
-
 #Display MacGyver
 MG = pygame.image.load("pictures/MacGyver.png").convert_alpha()
 
@@ -59,5 +56,5 @@ MG = pygame.image.load("pictures/MacGyver.png").convert_alpha()
 FILE = ""
 
 #sound
-soundtrack = pygame.mixer.Sound("sound/soundtrack.wav")
-jingle = pygame.mixer.Sound("sound/little_sound.wav")
+SOUNDTRACK = pygame.mixer.Sound("sound/soundtrack.wav")
+JINGLE = pygame.mixer.Sound("sound/little_sound.wav")

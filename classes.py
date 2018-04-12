@@ -89,7 +89,7 @@ class Elements():
         """Pin the name of the element to help MacGyver to find it"""
         self.labyrinth.grid[self.sprite_y][self.sprite_x] = self.name
 
-    def display_elements(self, window, MacGyver):
+    def display_elements(self, window, MacGyver, TOOLS):
         """Conditional display of the element:
         if MG caught it we write "0" instead of self.name on labyrinth.
         the display is True if the name of the lements is in place of it,
@@ -102,14 +102,14 @@ class Elements():
             #####dysplay the pick-up of the elements#############
             window.blit(PICKUP, (90, 120))
             pygame.display.flip()
-            jingle.play()
+            JINGLE.play()
             time.sleep(1)
             #####################################################
 
             print("Yeah! You caught the {}!".format(self.name))
             self.labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] = "0"
             TOOLS.append(self.name)
-            print(TOOLS)
+
             
 
 
