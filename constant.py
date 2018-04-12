@@ -25,6 +25,18 @@ ICONE = pygame.image.load("pictures/guardian.png").convert_alpha()
 #Screen "home"
 HOME = pygame.image.load("pictures/home.png").convert()
 
+#Screen "Welcome to the game"
+WELCOME = pygame.image.load("pictures/welcome.png").convert_alpha()
+
+#Screen Pick-up Elements
+PICKUP = pygame.image.load("pictures/pickup.png").convert_alpha()
+
+#Screen Game-Over
+GAMEOVER = pygame.image.load("pictures/game_over.png").convert_alpha()
+
+#Screen You win
+WIN = pygame.image.load("pictures/win.png").convert_alpha()
+
 #Game background
 BACKGROUND = pygame.image.load("pictures/background.jpg").convert()
 
@@ -32,7 +44,7 @@ BACKGROUND = pygame.image.load("pictures/background.jpg").convert()
 WALL = pygame.image.load("pictures/wall.png")
 ARRIVAL = pygame.image.load("pictures/guardian.png").convert_alpha()
 
-#king of tools
+#kind of tools
 TUBE = pygame.image.load("pictures/tube.png").convert_alpha()
 ETHER = pygame.image.load("pictures/ether.png").convert_alpha()
 SYRINGE = pygame.image.load("pictures/syringe.png").convert_alpha()
@@ -45,3 +57,7 @@ MG = pygame.image.load("pictures/MacGyver.png").convert_alpha()
 
 #variable contain map
 FILE = ""
+
+#sound
+soundtrack = pygame.mixer.Sound("sound/soundtrack.wav")
+jingle = pygame.mixer.Sound("sound/little_sound.wav")

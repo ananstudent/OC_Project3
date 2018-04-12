@@ -107,3 +107,11 @@ Les fonctionnalités du jeu sont remplies cependant je me demande toujours si je
 
 ####Fait 6 ème commit####
 
+12 avril 2018 : 4 ème jour
+
+Ajout de la methode display_element à la classe Element de manière à gérer l'affichage des objets si MG est sur la case ou non? Cette methode fait l'ajout aussi dans la liste TOOLS.
+Ceci est l'idée que j'avais en tête pour gérer de la même manière tous les objets . Cpendant je me dis si le code est plus libilble ainsi ...
+
+Je passe à l'aspect décoratif:
+ajout de son et d'images supplémentaire (passer le texte en console à l'affichage)
+

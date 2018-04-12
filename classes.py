@@ -2,6 +2,8 @@
 # -*-coding:utf-8 -
 """Place where Classes are """
 import random
+import time
+
 from constant import*
 
 class Map():
@@ -61,7 +63,6 @@ class Elements():
         #Surface
         self.surface = SURFACE
 
-
     def locate_elements(self):
         """To locate one element: we detecte empty cell. We catch the coordinate in a list of tuple
         (y,x), we choice one pair of co-ordinates"""
@@ -88,14 +89,32 @@ class Elements():
         """Pin the name of the element to help MacGyver to find it"""
         self.labyrinth.grid[self.sprite_y][self.sprite_x] = self.name
 
-    def display_elements(self, window):
-        """Display element over the game board"""
-        window.blit(self.surface, (self.x, self.y))
+    def display_elements(self, window, MacGyver):
+        """Conditional display of the element:
+        if MG caught it we write "0" instead of self.name on labyrinth.
+        the display is True if the name of the lements is in place of it,
+        else we display nothing"""
+        if self.labyrinth.grid[self.sprite_y][self.sprite_x] == self.name:
+            window.blit(self.surface, (self.x, self.y))
+        
+        if self.labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] == self.name:
 
+            #####dysplay the pick-up of the elements#############
+            window.blit(PICKUP, (90, 120))
+            pygame.display.flip()
+            jingle.play()
+            time.sleep(1)
+            #####################################################
+
+            print("Yeah! You caught the {}!".format(self.name))
+            self.labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] = "0"
+            TOOLS.append(self.name)
+            print(TOOLS)
+            
 
 
 class Heroe():
-    """ class which define a character to deplace with x and y position and motion
+    """ class which define a character to deplace with x and y position.
     This character moves inside a labyrinth so the class take one parameter : labyrinth object """
 
     def __init__(self, labyrinth):

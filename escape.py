@@ -2,7 +2,6 @@
 # -*-coding:utf-8 -
 
 """Program "Help MacGyver to escape!"""
-
 from constant import*
 from classes import*
 #from function import*
@@ -17,14 +16,17 @@ MAIN_LOOP = True
 while MAIN_LOOP:
     #Load home screen
     window.blit(HOME, (0, 0))
+
     #Reload display
     pygame.display.flip()
-    #loop delay
+    
 
 ######HOME LOOP###############
     HOME_LOOP = True
     while HOME_LOOP:
 
+        #play soundtrack
+        soundtrack.play()
         #loop delay
         pygame.time.Clock().tick(30)
 
@@ -38,11 +40,22 @@ while MAIN_LOOP:
 
             #Quit home loop to enter in game loop
             if event.type == KEYDOWN and event.key == K_RETURN:
-                print("Welcome to the game")
+                
+                #######WELCOME TO THE GAME##########
+                soundtrack.stop()
+                window.blit(BACKGROUND, (0, 0))
+                window.blit(WELCOME, (90, 120))
+                pygame.display.flip()
+                time.sleep(1)
+                ####################################
+                
                 HOME_LOOP = False
                 GAME_LOOP = True
+  
                 #Load the game's map
                 FILE = "map/N1.txt"
+
+
 
     if FILE != "": #We make sure that the file really exists and is not empty
         
@@ -56,25 +69,24 @@ while MAIN_LOOP:
 
         #Get the items in the labyrinthe
 
-        syringe = Elements("s", SYRINGE, labyrinth)
+        syringe = Elements("syringe", SYRINGE, labyrinth)
         syringe.locate_elements()
         syringe.pin_elements()
 
-        ether = Elements("e", ETHER, labyrinth)
+        ether = Elements("ether", ETHER, labyrinth)
         ether.locate_elements()
         ether.pin_elements()
 
-        tube = Elements("t", TUBE, labyrinth)
+        tube = Elements("tube", TUBE, labyrinth)
         tube.locate_elements()
         tube.pin_elements()
 
         #And God create an Heroe
         MacGyver = Heroe(labyrinth)
         
-
 #########GAME_LOOP##############
     while  GAME_LOOP:
-        #print("Je suis là")
+
         pygame.time.Clock().tick(30)
         for event in pygame.event.get():
             
@@ -108,45 +120,32 @@ while MAIN_LOOP:
         window.blit(MG, (MacGyver.x, MacGyver.y))
 
         #Add conditionnal display of Element
-        if labyrinth.grid[tube.sprite_y][tube.sprite_x] == "t":
-            tube.display_elements(window)
 
-        if labyrinth.grid[syringe.sprite_y][syringe.sprite_x] == "s":
-            syringe.display_elements(window)
-
-        if labyrinth.grid[ether.sprite_y][ether.sprite_x] == "e":
-            ether.display_elements(window)     
-        
-        if labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] == "t":
-            print("Yeah! You caught the tube!")
-            labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] = "0"
-            TOOLS.append("tube")
-            print(TOOLS)
-
-        if labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] == "s":
-            print("Yeah! You caught the syringe!")
-            labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] = "0"
-            TOOLS.append("syringe")
-            print(TOOLS)
-
-
-        if labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] == "e":
-            print("Yeah! You caught the ether!")
-            labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] = "0"
-            TOOLS.append("ether")
-            print(TOOLS)
-
-    
+        tube.display_elements(window, MacGyver)
+        syringe.display_elements(window, MacGyver)
+        ether.display_elements(window, MacGyver)
+        print(TOOLS)
         pygame.display.flip()    
 
 
         if labyrinth.grid[MacGyver.sprite_x][MacGyver.sprite_y] == "a":
 
+            #The gamer win if he has the tree elements
             if len(TOOLS) < 3:
-                print("You don't collect all the items !")
-                print("You die!")
+
+                #####DISPLAY GAME OVER#####
+                window.blit(GAMEOVER, (150, 150))
+                pygame.display.flip()
+                time.sleep(2)
+                ###########################
                 GAME_LOOP = False
 
-            if len(TOOLS) == 3:        
+            if len(TOOLS) == 3:
+
+                ######DISPLAY YOU WIN#####        
+                window.blit(WIN, (100, 150))
+                pygame.display.flip()
+                time.sleep(2)
+                ##########################                
                 print("You win!")
                 GAME_LOOP = False
