@@ -15,7 +15,7 @@ GAME_LOOP = True
 #Dimensions of game window
 NB_SPRITE = 15
 SPRITE_SIZE = 30
-SCREEN_SIZE = (NB_SPRITE * SPRITE_SIZE, NB_SPRITE * SPRITE_SIZE)
+SCREEN_SIZE = ((NB_SPRITE + 2) * SPRITE_SIZE, (NB_SPRITE + 2) * SPRITE_SIZE)
 
 #Display video of window game
 window = pygame.display.set_mode(SCREEN_SIZE)
@@ -38,6 +38,7 @@ GAMEOVER = pygame.image.load("pictures/game_over.png").convert_alpha()
 WIN = pygame.image.load("pictures/win.png").convert_alpha()
 
 #Game background
+BLACK_GROUND = pygame.image.load("pictures/back_ground.png").convert()
 BACKGROUND = pygame.image.load("pictures/background.jpg").convert()
 
 #kind of sprite

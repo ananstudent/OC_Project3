@@ -1,127 +1,77 @@
-########## Journal de développement du Projet 3: "Aider Mac Gyver à s'echapper"######
+Elaboration  du programme “Aider MacGyver à s’échapper”  
+dépôt Github: https://github.com/horlas/OC_Project3.git
 
-9 avril 2018 : 1er jour
-Objectifs : préparation du projet 
-			affichage d'un ecran d'accueil et du  labyrinthe
-			affichage de Mac Gyver
+Programme écrit en Python3 grâce au module Pygame. Utilisation de Virtual Env et Git.
 
+1- Préparation du projet :
+Initialisation d’un environnement virtuel de développement : virtual env/
+Initialisation d’un repo Github et initialisation d’un dépôt git en local 
+Création d’un fichier requirements.txt qui contiendra les versions des bibliothèques utilisées par le programme, dans notre cas Pygame.
+Creation de trois fichier .py : escape.py, classes.py, constant.py qui contiendront le programme, les classes, les constantes du programme.
+Création de deux dossiers : Map qui contient les cartes du labyrinthe, Pictures les images utilisées.
 
+2- Gestion des boucles du jeu avec l’affichage des fenêtres du jeu :
+Boucle Main: Initialisation de la fenêtre Pygame.
+Boucle Home: Fenêtre d’accueil du  jeu si on tape “ENTER” on rentre dans le jeu,  le fond d'écran utilisé est “HOME”
+Boucle Game : Fenêtre affichant le labyrinthe, le fond d'écran utilisé est “BACKGROUND”
+On peut basculer de la fenêtre affichant le labyrinthe vers la fenêtre d’accueil en appuyant sur ECHAP et une fois sur la fenêtre d’accueil : on peut entrer à nouveau dans le jeu en appuyant sur ENTER. Ceci a pour conséquence de relancer la partie depuis le départ.
+On peut, à n’importe quel moment, fermer la fenêtre Pygame et quitter le programme, ceci interrompt toutes les boucles.
 
+3- Génération de la structure du labyrinthe:
 
-1- Preparation du projet
-	Modification du dossier P3 pour préparation du projet 
-	Modification .gitignore de manière à ne plus versionné TP_Pygame contenu dans le dossier
-	Creation d'un repertoire Pictures contenant les images du projet
-	Creation du Readme.md dans l'optique de s'en servir comme un journal pour la redaction future du document lié  du projet
-	Creation d'un rpertoire Map qui contiendra les cartes du labyrinthe
-	Creation des fichiers  escape.py function.py classes.py constant.py
+Le labyrinthe est généré à partir d’une carte sous format .txt , il contient 15 lignes de 15 caractères: "w" = wall, "" = case vide, "a" = arrivée.
+Création de la classe Map qui a comme attribut une grille vide au début et qui prend en paramètre le fichier .txt.
+La méthode “generate” génère une liste de listes à partir de la lecture du fichier .txt . Cette liste de listes est mise dans l’attribut “grid” qui sera la matrice du Labyrinthe.
+Grâce à l’itération de “grid” , la méthode “display” affiche les sprites “mur” et “arrivée” selon si la cellule contient “w” ou “a” . Elle n’affiche rien pour les cases vides. L’affichage se fera grâce à un système de coordonnées x et y qui sera en pixel (SPRITE_SIZE) une case a une côte de 30*30.
+La méthode “display” affiche le labyrinthe comme un calque apposé à “BACKGROUND”.
+On affiche la photo du gardien sur la case “a”.
+Au niveau du programme, le labyrinthe est affiché lors de l’entrée dans la boucle jeu 
+4-Affichage et gestion des déplacements de Macgyver:
 
-2- Je fais le choix de commencer à utiliser Py Game pour afficher une première fenêtre de jeu : Ecran d'accueil et coder le fait de rentrer dans le jeu et de pouvoir en sortir en fermant la fenêtre.
-###Fait premier commit###
-
-3- (Pygame est à mon sens plus facile à utliser que le mode console car il fonctionne par calque et cela évite de gérer les deplacements en manipulation de liste) 
-
-Première étape: Gestion des boucles du jeu :Une boucle principale permettant de renter dans l'interface.
-A l'intérieur:
-Une boucle Accueil (Home loop) permettant de renter sur l'ecran d'accueil et d'en sortir pour enter dans le jeu (cela permettra par la suite de chatger plusieurs niveau)
-Une Boucle jeu permettant de lancer la partie avec le choix de la carte.
-###Fait deuxième commit###
-
-Deuxième étape:
-
-Génération de la structure du labyrinthe : je crée un document .txt avec 15 lignes de 15 cellules chacune: 
-"w" = wall
-"" = case vide
-"a" = arrivée
-Ce document sera la matrice du labyrinthe.
-Je créé une class Map qui a comme attribut une grille vide au début et qui prend en parmètre le fichier .txt.
-Cette classe a deux methodes
-
-Une qui génére le labyrinthe à partir de la matrice :
-A chaque symbole ("w" "a") correspond une image.
-La liste de liste comporte des cases auquel je donne une taille de 30 * 30 pixel.
-
-L'autre qui affiche le "calque" du labyrinthe. 
-
-Dans le programme principal:
-Je charge dans la fenêtre le fond.
-Je créé un objet "labyrinth" de type Map et je lance les deux fonctions (generate et display ).
-Je raffiche le fond + calque du labyrinthe.
-
-####Fait 3 ème commit###
-
-3 - Affichage et déplacements de MacGyver
-On traite MacGyver comme un objet que l'on déplace :
-
-Je crée une classe Heroe avec une position en x et y réelle et une position en x et y en pixel. Cette classe prend en paramètre le labyrinth puisque que le personnage se déplace dans la grille du labyrinthe.
-
-Cette classe comprend une methode: Move qui définie les nouvelles positions suite aux différents demande de déplacement envoyer par des event.key du programme principal.
-
-###Fait 4 ème commit###
-
-10 avril 2018 : 2ème jour
-
-Objectif: Coder le placement aléatoire des objets et leur affichage.
-
-Après quelques tatonnements , j'ai décidé de faire une class Element,
-La classe comporte deux methodes:
-La première qui consiste à positionner l'objet: on commence par repérer les cases vides , on les listes puis on tire au sort les coordonnées en x et y.
-La deuxième va venir consigner ces coordonnées dans la grille du labyrinthe sous forme de nom de l'objet. J'ai pensé que ceci serai pratique lors de l'étape du ramassage des objets . C'est à dire l'ajout d'une lettre dans la matrice du labyrinthe.
-Je ne suis pas satisfaite totalment car si on rajoute des objets par la suite l'adaptation du programme peut-être fastidieuse.
-
-####Fait 5 ème commit####
+MacGyver est un objet de class Heroe . Il a comme attributs ses coordonnées en réel et en pixel pour permettre son affichage et prend en paramètre le labyrinthe pour récupérer la grille  .
+Du programme: le joueur envoi des ordres de déplacement. Ces ordres sont rentrés en paramètre à la méthode “move” de la classe Heroe: pour chacune des directions on modifie les coordonnées de MacGyver. Dans le programme on affiche MacGyver avec ses nouvelles coordonnées.
+Lorsque MacGyver arrive sur la case “a” on a gagné et on sort du jeu pour aller à l’accueil.
 
 
 
-11 avril 2018 : 3ème jour
+5- Positionnement aléatoire des objets dans les couloirs du Labyrinthe:
 
-Objectif : 
+Création d’une classe Element avec comme attribut un nom, une surface (pour gérer l’affichage), des coordonnées reelles et pixel. 
+La méthode “locate_elements” liste les coordonnées (cell, ligne) de toutes les cases vides du labyrinthe. Elle met cette liste de tuple dans “position”. Puis on tire au sort grâce à un random.choice , un couple de coordonnée XY qui seront les coordonnées de l’élément créé.
+La méthode “pin_elements” vient écrire le nom de l’objet à son emplacement dans la matrice “grid” du labyrinthe.
 
-Coder le ramassage des objets par MacGyver :
+6- Ramassage des éléments par MacGyver:
 
-Lorsque Mac Gyver sera sur la case où se trouve l'objet il faudra que l'objet disparaisse de l'affichage, soit consigné dans une nouvelle liste par exemple "tool" donc apparaitre dans un deuxième temps dans cette fenêtre.
-ce qui veut dire interaction entre les classes element et heroe ?
+Lorsque MacGyver collecte un objet:
+Il écrit à la place de la position de l’objet un  “0” à l’endroit où il y avait le nom de l’objet (pin_element).
+On ajoute aussi le nom de l’objet à une liste vide TOOLS qui sert de compteur.
+7- L’affichage des objets se fait donc de manière conditionnelle : “display_elements” , si il y a leur nom à leur emplacement on les affiche sinon non.
 
-Changer la fin du jeu : on gagne si on a tous les éléments sinon on perd.
+Pour faire les étapes 6 et 7 on passe en paramètre la méthode “display_element” MacGyver , pour avoir les coordonnées de ce dernier ainsi que la liste TOOLS (vidée à chaque entrée dans le jeu) pour inscrire le nom des éléments collectés par MacGyver.
 
-1- ajout d'une methode display_elements à la classe element
+J’ai des doutes quand à la logique et au choix algorithmique du code de cette partie … J’ai codé comme cela car au début j’ai voulu créé une fonction appliquant les mêmes actions pour tous les éléments . Mais je ne sais pas si en terme de performance , faire passer les coordonnées de MacGyver à chaque déplacement dans les trois éléments est une bonne chose. Mais le programme fonctionne.
 
-2- ajout d'une methode / propriété de classe ? à la classe element : 
-affichant une seconde fenêtre de collecte avec comme matrice une liste vide....
-Ah j'aurai aimé afficher une seconde fenêtre avec Pygame mais ceci n'est pas possible à priori ...
+8- Gagné ou Perdu ?:
+Si MacGyver se présente sur “a” avec une liste d’objet TOOLS inférieur à 3 il a perdu sinon il a gagné.
 
-2bis- Changement de stratégie :
+9- Amélioration de l’affichage du  programme en enlevant les affichages en mode console. Ajout de la musique.
 
-Je passe en console :
-A chaque ajout d'un élément, une lettre s'inscrit dans labyrinth.grid  à la position de l'élément (methode pin_elements de la classe Element)
-Donc lorsque la position de Macgyver correspond à cette lettre c'est qu'il "ramasse" l'objet.
-Lorsqu'il "ramasse" l'objet je remplace la lettre symbolisant l'objet par "0".
-L'affichage de l'objet est conditionnel à la présence de sa lettre témoin sur ses coordonnées. Donc l'objet ne s'affiche plus lorsque la lettre témoin n'est plus.
-
-Je crée une liste tools vide . Elle symbolise le ramassage. Chaque élément ramassé vient s'ajouter à la liste.
-
-Cette liste doit faire une longueur de 3 . Si ce n'est pas le cas et si MacGyver se positionne sur "a" c'est à dire l'arrivée sans ses trois objets , il perd. Sinon il gagne.
-
-Les fonctionnalités du jeu sont remplies cependant je me demande toujours si je ne pourrais pas coder une fonction ou une methode evitant d'écrire les mêmes lignes pour chacun des trois objets.
+10- Ajout du Tableau de Score:
+Modification des tailles des fenêtre pour permettre un affichage au dessus de la fenêtre de jeu.
+A chaque fois que l’élément est attrapé il s’affiche sur le dessus . Ceci se fait par le contrôle de la liste TOOLS.
+J’ai ajouté une condition à la méthode display_element .
 
 
-####Fait 6 ème commit####
+Modifications possibles:
+Ajout de niveaux possibles (cartes supplémentaires)
+Ajout de nouveaux éléments
+Possibilité de déplacer le Gardien en l’ instanciant comme un Héros.
 
-12 avril 2018 : 4 ème jour
 
-Ajout de la methode display_element à la classe Element de manière à gérer l'affichage des objets si MG est sur la case ou non? Cette methode fait l'ajout aussi dans la liste TOOLS.
-Ceci est l'idée que j'avais en tête pour gérer de la même manière tous les objets . Cpendant je me dis si le code est plus lisible ainsi ...
 
-Je passe à l'aspect décoratif:
-ajout de son et d'images supplémentaire (passer le texte en console à l'affichage d'un jeu). Faire appel au module time.
-####Fait 7 ème commit####
 
-bug detecté: la liste TOOLS ne se vide pas lors de la sortie d'une partie puis d'une entrée ....
 
-Ca m'a donné du fil à retorde:
-La liste TOOLS etait initialisée dans le fichier constant en tant que liste vide.
-Elle se vidait donc à chaque tour de boucle MAIN . Si je la supprimais du fichier constante pour la mettre dans la méthode display, elle gardait en mémoire les éléments malgré la sortie d'un partie.
-Solution: définir la liste TOOLS vide à chaque début de boucle GAME (donc la sortir du fichier constant) et la passer en paramètre dans la création de chaque élément. Un peu comme si on faisait l'appel de chaque élément.
+
 
 
 

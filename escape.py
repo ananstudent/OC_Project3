@@ -16,7 +16,8 @@ MAIN_LOOP = True
 while MAIN_LOOP:
 
     #Load home screen
-    window.blit(HOME, (0, 0))
+    window.blit(BLACK_GROUND, (0, 0))
+    window.blit(HOME, (30, 30))
     #Reload display
     pygame.display.flip()
     
@@ -26,7 +27,7 @@ while MAIN_LOOP:
     while HOME_LOOP:
 
         #play soundtrack
-        SOUNDTRACK.play()
+        #SOUNDTRACK.play()
 
         #loop delay
         pygame.time.Clock().tick(30)
@@ -44,8 +45,8 @@ while MAIN_LOOP:
                 
                 #######WELCOME TO THE GAME##########
                 SOUNDTRACK.stop()
-                window.blit(BACKGROUND, (0, 0))
-                window.blit(WELCOME, (90, 120))
+                window.blit(BACKGROUND, (30, 30))
+                window.blit(WELCOME, (120, 150))
                 pygame.display.flip()
                 time.sleep(1)
                 ####################################
@@ -59,7 +60,7 @@ while MAIN_LOOP:
     if FILE != "": #We make sure that the file really exists and is not empty
         
         #load the background
-        window.blit(BACKGROUND, (0, 0))
+        window.blit(BACKGROUND, (30, 30))
         
         #generate the labyrinth
         labyrinth = Map(FILE)
@@ -114,27 +115,28 @@ while MAIN_LOOP:
                     MacGyver.move("up")                
         
         #Display the game board
-        window.blit(BACKGROUND, (0, 0))
+        window.blit(BACKGROUND, (0+30, 0+30))
         labyrinth.display(window)
         
         #Add MacGyver in the Labyrinth with his position
-        window.blit(MG, (MacGyver.x, MacGyver.y))
+        window.blit(MG, (MacGyver.x + 30, MacGyver.y + 30)) # + 30 for the offset of the black outline
 
         #Add conditionnal display of Element
 
         tube.display_elements(window, MacGyver, TOOLS)
         syringe.display_elements(window, MacGyver, TOOLS)
         ether.display_elements(window, MacGyver, TOOLS)
+
         pygame.display.flip()    
 
 
         if labyrinth.grid[MacGyver.sprite_x][MacGyver.sprite_y] == "a":
 
-            #The gamer win if he has the tree elements
+            #The gamer wins if he has the tree elements
             if len(TOOLS) < 3:
 
                 #####DISPLAY GAME OVER#####
-                window.blit(GAMEOVER, (150, 150))
+                window.blit(GAMEOVER, (150+30, 150+30))
                 pygame.display.flip()
                 time.sleep(2)
                 ###########################
@@ -143,7 +145,7 @@ while MAIN_LOOP:
 
             if len(TOOLS) == 3:
                 ######DISPLAY YOU WIN#####        
-                window.blit(WIN, (100, 150))
+                window.blit(WIN, (100+30, 150+30))
                 pygame.display.flip()
                 time.sleep(2)
                 ##########################                

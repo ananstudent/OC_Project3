@@ -38,9 +38,9 @@ class Map():
                 X = num_sprite * SPRITE_SIZE
                 Y = num_line * SPRITE_SIZE
                 if sprite == "w":
-                    window.blit(WALL, (X, Y)) #we load a wall picture over the window
-                if  sprite == "a":
-                    window.blit(ARRIVAL, (X, Y)) #we load a arrival picture over the window
+                    window.blit(WALL, (X + 30, Y + 30)) #we load a wall picture over the window 
+                if  sprite == "a":                      #we add 30 for the offset of the black outline
+                    window.blit(ARRIVAL, (X + 30, Y + 30)) #we load a arrival picture over the window
                 num_sprite += 1
             num_line += 1
 
@@ -95,14 +95,14 @@ class Elements():
         the display is True if the name of the lements is in place of it,
         else we display nothing"""
         if self.labyrinth.grid[self.sprite_y][self.sprite_x] == self.name:
-            window.blit(self.surface, (self.x, self.y))
+            window.blit(self.surface, (self.x + 30, self.y + 30)) # + 30 for the offset of the black outline
         
         if self.labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] == self.name:
 
             #####dysplay the pick-up of the elements#############
-            window.blit(PICKUP, (90, 120))
+            window.blit(PICKUP, (90 + 30, 120 + 30)) # + 30 for the offset of the black outline
             pygame.display.flip()
-            JINGLE.play()
+            #JINGLE.play()
             time.sleep(1)
             #####################################################
 
@@ -110,7 +110,10 @@ class Elements():
             self.labyrinth.grid[MacGyver.sprite_y][MacGyver.sprite_x] = "0"
             TOOLS.append(self.name)
 
-            
+       # display the scoreboard
+        if self.name in TOOLS:
+            window.blit(self.surface, (TOOLS.index(self.name) * SPRITE_SIZE, 0))
+
 
 
 class Heroe():
