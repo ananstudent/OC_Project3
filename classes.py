@@ -92,8 +92,9 @@ class Elements():
     def display_elements(self, window, MacGyver, TOOLS):
         """Conditional display of the element:
         if MG caught it we write "0" instead of self.name on labyrinth.
-        the display is True if the name of the lements is in place of it,
+        the display is True if the name of the elements is in place of it,
         else we display nothing"""
+
         if self.labyrinth.grid[self.sprite_y][self.sprite_x] == self.name:
             window.blit(self.surface, (self.x + 30, self.y + 30)) # + 30 for the offset of the black outline
         
@@ -118,7 +119,7 @@ class Elements():
 
 class Heroe():
     """ class which define a character to deplace with x and y position.
-    This character moves inside a labyrinth so the class take one parameter : labyrinth object """
+    This character moves inside a labyrinth so the class take one parameter: labyrinth object """
 
     def __init__(self, labyrinth):
         #Position in pixel:
